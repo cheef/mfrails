@@ -1,0 +1,27 @@
+<h1>Users</h1>
+<div align="center"></div>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+	<tr><td bgcolor="#4A69A5">
+
+	<table border="0" width="100%" cellspacing="1" cellpadding="0">
+				
+		<tr bgcolor="#D0D0FF" align="center">
+			<td><b>&nbsp;<a href="/admin/users.html?&users_list_s=Name" style="text-decoration: none">Name</a>&nbsp;</b></td>
+			<td><b>&nbsp;<a href="/admin/users.html?&users_list_s=Login" style="text-decoration: none">Login</a>&nbsp;</b></td>
+			<td><b>&nbsp;<a href="/admin/users.html?&users_list_s=E-mail" style="text-decoration: none">E-mail</a>&nbsp;</b></td>
+			<td><b>&nbsp;<a href="/admin/users.html?&users_list_s=Registered at" style="text-decoration: none">Registered at</a>&nbsp;</b></td>
+			<td><b>&nbsp;<a href="/admin/users.html?&users_list_s=Edit" style="text-decoration: none">Edit</a>&nbsp;</b></td>
+		</tr>
+		<? foreach ($users as $user){ ?>
+			<tr valign="top">
+				<td bgcolor="#E0E0E0">&nbsp;<? echo $user->name ?>&nbsp;</td>
+				<td bgcolor="#E0E0E0">&nbsp;<a href="/admin/users.html?id=<? echo $user->id ?>"><? echo $user->login ?></a>&nbsp;</td>
+				<td bgcolor="#E0E0E0">&nbsp;<? echo $user->email ?>&nbsp;</td>
+				<td bgcolor="#E0E0E0">&nbsp;<? echo $user->created_at ?>&nbsp;</td>
+				<td bgcolor="#E0E0E0">&nbsp;<a href="/admin/users.html?id=<? echo $user->id ?>&mode=edit">Edit</a>&nbsp;</td>
+			</tr>
+		<? } ?>
+	</table>
+	</td>
+	</tr>
+</table>
