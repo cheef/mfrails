@@ -1,14 +1,29 @@
 <?php
 	class Authorization {
 		
+		public static $current_user;
 		/**
 		 * Checking loggin in
 		 * @author Ivan Garmatenko <cheef.che at gmail.com>
 		 * @return unknown
 		 */
 		public static function login_required(){			
+			if (self::is_logged()){
+				return true;
+			} else return (self::login_by_session() || self::login_by_http_basic());
+		}
+		
+		public static function login_by_session(){
+			$user = User::find_by_id(Session::$current_session->data);
+			if (empty($user)) return false;
+			else {
+				self::$current_user = $user;
+				return true;
+			}			
+		}
+		
+		private static function login_by_http_basic(){
 			if (!self::login_typed()) return self::access_denied();
-			
 			$user = User::find_by_login($_SERVER['PHP_AUTH_USER']);			
 			return self::authorize($user, $_SERVER['PHP_AUTH_PW']);
 		}
@@ -34,13 +49,15 @@
 		 * @return boolean
 		 */
 		public static function authorize($user, $password){
-			if (!empty($user) && 
-				self::is_compare($user, $password)) return true;
-			else return false;			
+			if (!empty($user) && self::is_compare($user, $password)) {
+				self::$current_user = $user;
+				Session::$current_session->update($user->id);				
+				return true;
+			} else return false;
 		}
 		
 		/**
-		 * Compare password		 *
+		 * Compare password		 
 		 * @author Ivan Garmatenko <cheef.che at gmail.com>
 		 * @param User class instance $user
 		 * @param string $password
@@ -108,6 +125,7 @@
 		 * @return User class instance
 		 */
 		public static function current_user(){
+			self::$current_user = User::find_by_login($_SERVER['PHP_AUTH_USER']);
 			if (login_typed) return User::find_by_login($_SERVER['PHP_AUTH_USER']);
 		}
 		
@@ -118,6 +136,10 @@
 		 */
 		private static function login_typed(){
 			return (isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW']));
+		}
+		
+		public static function is_logged(){
+			return !empty(self::$current_user);
 		}
 	}
 ?>

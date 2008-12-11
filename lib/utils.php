@@ -20,13 +20,23 @@
 		foreach($collection as $element) render_partial($controller, $partial, array($variable => $element));
 	}
 	
-	function render_partial($controller, $partial, $locals){
+	function render_partial($controller, $partial, $locals = array()){
 		foreach($locals as $key => $value) eval("\$$key = \$value;");
+		unset($locals);
 		include(views_dir().$controller.DIR_SEP.$partial);
+	}
+	
+	function read_html($controller, $partial){
+		return join("", file(views_dir().$controller.DIR_SEP.$partial));
 	}
 	
 	function views_dir(){
 		return SITE_PATH."views".DIR_SEP;
-	}	
-		
+	}
+	
+	#ordering
+	function order_by($field, $label){
+		$order = new OrderRender($field, $label);
+		$order->render();		
+	}		
 ?>

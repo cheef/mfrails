@@ -1,8 +1,5 @@
-<tr bgcolor="#d0d0ff">
-	<td bgcolor="#e0e0ff" class="left_order"><? echo $office->name ?></td>
-	<td><? echo $office->size ?></td>
-	<td><? echo $office->lease_or_sale ?></td>
-	<td><? echo $office->status ?></td>
-	<td><? echo $office->published ?></td>
-	<td><? echo $office->property_type ?></td>
+<tr>
+	<td style="text-align: left; padding-left: 20px;"><a href="/office.html?id=<? echo $office->id ?>"><? echo $office->name ?></a></td>
+	<td><? echo $office->size ?></td>	
+	<td><? echo ($office->available_soon == '0000-00-00') ? 'not named' : $office->available_soon ?></td>
 </tr>

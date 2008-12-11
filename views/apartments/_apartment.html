@@ -1,9 +1,7 @@
-<tr bgcolor="#d0d0ff">
-	<td bgcolor="#e0e0ff" class="left_order"><? echo $apartment->name ?></td>
-	<td><? echo $apartment->size ?></td>
-	<td><? echo $apartment->lease_or_sale ?></td>
+<tr>
+	<td style="text-align: left; padding-left: 20px;"><a href="/apartment.html?id=<? echo $apartment->id ?>"><? echo $apartment->name ?></a></td>
+	<td><? echo $apartment->size ?></td>	
 	<td><? echo $apartment->bedrooms ?></td>
 	<td><? echo $apartment->rooms ?></td>
-	<td><? echo $apartment->status ?></td>
-	<td><? echo $apartment->available ?></td>
+	<td><? echo ($apartment->available_soon == '0000-00-00') ? 'not named' : $apartment->available_soon ?></td>	
 </tr>

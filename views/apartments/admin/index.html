@@ -1,0 +1,26 @@
+<h2>Apartments</h2>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tbody>
+		<tr><td bgcolor="#4a69a5">
+						<table width="100%" cellspacing="1" cellpadding="0" border="0" class="apartments">
+							<tbody>
+								<tr bgcolor="#d0d0ff">
+									<td bgcolor="#e0e0ff">
+										<img height="5" width="9" src="/pics/def/up.gif"/>
+										<strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=-Name">Name</a></strong>
+										<img height="5" width="9" src="/pics/def/up.gif"/>
+									</td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Square meters">Square meters</a></strong></td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Sale/Lease">Sale/Lease</a></strong></td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Bedrooms">Bedrooms</a></strong></td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Bathrooms">Bathrooms</a></strong></td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Status">Status</a></strong></td>
+									<td><strong><a style="text-decoration: none;" href="/admin/apartment.html?&amp;apartment_list_s=Available">Available</a></strong></td>
+								</tr>
+								<? render_collection($apartments, "apartment", "apartments", "admin".DIR_SEP."_apartment.html") ?>
+							</tbody>
+						</table>
+					</td>
+		</tr>
+	</tbody>
+</table>

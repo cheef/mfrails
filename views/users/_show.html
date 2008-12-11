@@ -1,0 +1,8 @@
+<div id="autentification">
+	<h2>Welcome, <? echo Authorization::$current_user->login?></h2>
+	<form action="/logout" method="POST">		
+		<label for="user_password">Your&nbsp;e-mail:</label><br />
+		<? echo Authorization::$current_user->email ?><br />
+		<input type="submit" value="logout" id="user_submit" />
+	</form>
+</div>
