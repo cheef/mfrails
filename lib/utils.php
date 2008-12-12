@@ -35,8 +35,8 @@
 	}
 	
 	#ordering
-	function order_by($field, $label){
-		$order = new OrderRender($field, $label);
+	function order_by($field, $label, $lang = ""){		
+		$order = new OrderRender($field, $label, $lang);
 		$order->render();		
 	}		
 ?>

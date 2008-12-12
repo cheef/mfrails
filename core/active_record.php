@@ -3,7 +3,7 @@
 	class ActiveRecord extends AbstractClass {
 		
 		static $table_name = NULL;
-		static protected $db = NULL;
+		static public $db = NULL;
 		static public $result = NULL;
 		public $id;
 		
@@ -67,9 +67,7 @@
 		public function query($sql){
 			self::connect_to_db_or_continue();
 			self::$db->query($sql);
-		}
+		}		
 		
-		
-	}
-		
+	}		
 ?>
